@@ -1,0 +1,55 @@
+---
+export interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Servicio profesional de detailing y tratamientos cerámicos en Villa Alemana y alrededores. Protegemos y devolvemos el brillo a tu auto. ¡Cotiza hoy!" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	</head>
+	<body class="text-white">
+		<!-- Fondo global similar al Hero -->
+		<div class="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 -z-10"></div>
+		<slot />
+		<script>
+			// Simple scroll animations
+			document.addEventListener('DOMContentLoaded', () => {
+				const animateElements = document.querySelectorAll('.animate-on-scroll');
+				
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('loaded');
+						}
+					});
+				}, {
+					threshold: 0.1
+				});
+
+				animateElements.forEach(element => {
+					element.classList.add('loading');
+					observer.observe(element);
+				});
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	body {
+		font-family: 'Inter', sans-serif;
+	}
+</style>

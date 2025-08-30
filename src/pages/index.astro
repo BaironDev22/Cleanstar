@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Services from '../components/Services.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Cleanstar Detailing | Detailing Automotriz y Cerámico en Villa Alemana"
+  description="Servicio profesional de detailing y tratamientos cerámicos en Villa Alemana y alrededores. Protegemos y devolvemos el brillo a tu auto. ¡Cotiza hoy!"
+>
+  <Header />
+  <main>
+    <Hero />
+    <About />
+    <Services />
+    <section id="testimonios">
+      <Testimonials />
+    </section>
+    <Contact />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* Import base styles */
+  @import '../styles/base.css';
+</style>

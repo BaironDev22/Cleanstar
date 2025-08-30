@@ -1,0 +1,631 @@
+---
+// Navbar component con estructura original
+const navItems = [
+  { title: "Inicio", url: "#inicio", label: "inicio" },
+  { title: "Nosotros", url: "#nosotros", label: "nosotros" },
+  { title: "Servicios", url: "#servicios", label: "servicios" },
+  { title: "Testimonios", url: "#testimonios", label: "testimonios" },
+  { title: "Contacto", url: "#contacto", label: "contacto" }
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 px-4 py-3" id="main-header">
+  <nav class="flex justify-between items-center max-w-7xl mx-auto rounded-full px-6 py-3" id="main-nav">
+    <!-- Logo -->
+    <div class="flex items-center">
+      <div class="logo-container flex items-center justify-center w-16 h-16 md:w-20 md:h-20" style="color: var(--color1)">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1004 591" class="w-28 h-28 md:w-36 md:h-36">
+          <polygon fill="currentColor" points="515,383 512,383 509,386 509,397 515,396 516,390 513,390 512,395 510,394 513,385 514,388 516,388"/>
+          <polygon fill="currentColor" points="500,383 498,387 497,397 499,397 501,393 502,397 505,397 507,383 505,383 503,388 502,384"/>
+          <polygon fill="currentColor" points="487,383 484,397 489,397 490,395 491,397 494,397 496,383 493,384 491,395 487,394 489,383"/>
+          <polygon fill="currentColor" points="474,383 468,397 471,397 472,395 474,397 481,397 483,383 481,383 478,397 476,391 476,383"/>
+          <polygon fill="currentColor" points="456,383 453,397 459,397 459,395 456,394 460,389 457,388 461,385 464,387 463,397 465,397 467,387 470,384 463,383 462,385 461,383"/>
+          <polygon fill="currentColor" points="450,383 446,383 443,397 449,397 451,395 452,385"/>
+          <polygon fill="currentColor" points="571,329 569,333 564,371 571,371 574,355 576,356 579,371 587,371 583,353 589,346 590,334 585,330"/>
+          <polygon fill="currentColor" points="556,329 549,330 533,371 541,371 544,365 550,365 551,371 559,371 558,332"/>
+          <polygon fill="currentColor" points="538,329 517,330 516,337 522,338 517,371 525,370 530,340 532,337 537,337"/>
+          <polygon fill="currentColor" points="507,329 498,329 493,333 492,336 492,344 501,356 501,363 499,365 496,363 495,356 490,356 488,358 489,367 492,371 495,372 505,371 509,366 509,355 499,340 502,335 504,337 504,342 511,342 512,336"/>
+          <polygon fill="currentColor" points="464,329 461,338 456,371 464,371 466,353 468,350 471,370 480,371 488,330 480,330 476,355 472,331 470,329"/>
+          <polygon fill="currentColor" points="449,329 442,330 425,371 434,371 437,365 443,365 444,371 452,370 451,339"/>
+          <polygon fill="currentColor" points="414,329 412,334 406,371 423,371 424,363 415,362 417,355 423,354 425,349 425,346 418,345 419,338 429,337 430,329"/>
+          <polygon fill="currentColor" points="399,329 392,330 385,371 401,371 402,369 402,363 395,362 397,345 400,334"/>
+          <polygon fill="currentColor" points="380,329 369,329 366,331 363,337 359,357 359,366 363,371 373,372 376,371 380,366 382,358 381,355 374,355 372,363 367,363 367,356 371,338 375,336 377,338 376,345 383,345 384,333"/>
+          <polygon fill="currentColor" points="434,316 435,317 473,293 482,289 514,317 511,268 504,274 499,286 496,277 487,268 465,265"/>
+          <polygon fill="currentColor" points="558,241 510,241 506,194 478,241 430,242 451,261 484,260 494,253 499,241 502,250 509,258 517,261 526,261"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center space-x-1">
+      {navItems.map((link) => (
+        <a
+          class="relative block px-4 py-2 text-sm font-medium transition-colors duration-300 nav-link"
+          style="color: var(--color1)"
+          aria-label={link.label}
+          href={link.url}
+        >
+          {link.title}
+        </a>
+      ))}
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button 
+      id="mobile-menu-button"
+      class="md:hidden w-10 h-10 flex flex-col justify-center items-center space-y-1 group relative z-50"
+      aria-label="Toggle mobile menu"
+      type="button"
+    >
+      <span class="w-6 h-0.5 transition-all duration-300 group-hover:bg-white hamburger-line" style="background-color: var(--color1)"></span>
+      <span class="w-6 h-0.5 transition-all duration-300 group-hover:bg-white hamburger-line" style="background-color: var(--color1)"></span>
+      <span class="w-6 h-0.5 transition-all duration-300 group-hover:bg-white hamburger-line" style="background-color: var(--color1)"></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Menu Container -->
+<div id="mobile-menu-container" class="md:hidden fixed inset-0 pointer-events-none z-40" style="display: none;">
+  <!-- Mobile Menu Overlay -->
+  <div 
+    id="mobile-menu-overlay" 
+    class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 invisible transition-all duration-300"
+    style="pointer-events: none;"
+  ></div>
+
+  <!-- Mobile Menu -->
+  <div 
+    id="mobile-menu" 
+    class="fixed top-0 right-0 h-full w-full max-w-sm backdrop-blur-lg border-l transform translate-x-full transition-transform duration-300 ease-in-out"
+    style="background-color: rgba(43, 43, 43, 0.98); border-color: var(--color4); pointer-events: none;"
+  >
+    <!-- Mobile Menu Header -->
+    <div class="flex justify-between items-center p-6" style="border-bottom: 1px solid var(--color4)">
+      <div class="flex items-center">
+        <div class="logo-container-mobile flex items-center justify-center w-14 h-14 mr-3" style="color: var(--color1)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1004 591" class="w-20 h-20">
+            <polygon fill="currentColor" points="515,383 512,383 509,386 509,397 515,396 516,390 513,390 512,395 510,394 513,385 514,388 516,388"/>
+            <polygon fill="currentColor" points="500,383 498,387 497,397 499,397 501,393 502,397 505,397 507,383 505,383 503,388 502,384"/>
+            <polygon fill="currentColor" points="487,383 484,397 489,397 490,395 491,397 494,397 496,383 493,384 491,395 487,394 489,383"/>
+            <polygon fill="currentColor" points="474,383 468,397 471,397 472,395 474,397 481,397 483,383 481,383 478,397 476,391 476,383"/>
+            <polygon fill="currentColor" points="456,383 453,397 459,397 459,395 456,394 460,389 457,388 461,385 464,387 463,397 465,397 467,387 470,384 463,383 462,385 461,383"/>
+            <polygon fill="currentColor" points="450,383 446,383 443,397 449,397 451,395 452,385"/>
+            <polygon fill="currentColor" points="571,329 569,333 564,371 571,371 574,355 576,356 579,371 587,371 583,353 589,346 590,334 585,330"/>
+            <polygon fill="currentColor" points="556,329 549,330 533,371 541,371 544,365 550,365 551,371 559,371 558,332"/>
+            <polygon fill="currentColor" points="538,329 517,330 516,337 522,338 517,371 525,370 530,340 532,337 537,337"/>
+            <polygon fill="currentColor" points="507,329 498,329 493,333 492,336 492,344 501,356 501,363 499,365 496,363 495,356 490,356 488,358 489,367 492,371 495,372 505,371 509,366 509,355 499,340 502,335 504,337 504,342 511,342 512,336"/>
+            <polygon fill="currentColor" points="464,329 461,338 456,371 464,371 466,353 468,350 471,370 480,371 488,330 480,330 476,355 472,331 470,329"/>
+            <polygon fill="currentColor" points="449,329 442,330 425,371 434,371 437,365 443,365 444,371 452,370 451,339"/>
+            <polygon fill="currentColor" points="414,329 412,334 406,371 423,371 424,363 415,362 417,355 423,354 425,349 425,346 418,345 419,338 429,337 430,329"/>
+            <polygon fill="currentColor" points="399,329 392,330 385,371 401,371 402,369 402,363 395,362 397,345 400,334"/>
+            <polygon fill="currentColor" points="380,329 369,329 366,331 363,337 359,357 359,366 363,371 373,372 376,371 380,366 382,358 381,355 374,355 372,363 367,363 367,356 371,338 375,336 377,338 376,345 383,345 384,333"/>
+            <polygon fill="currentColor" points="434,316 435,317 473,293 482,289 514,317 511,268 504,274 499,286 496,277 487,268 465,265"/>
+            <polygon fill="currentColor" points="558,241 510,241 506,194 478,241 430,242 451,261 484,260 494,253 499,241 502,250 509,258 517,261 526,261"/>
+          </svg>
+        </div>
+      </div>
+      <button 
+        id="mobile-menu-close"
+        class="w-12 h-12 flex items-center justify-center transition-all duration-300 rounded-lg hover:bg-white/10 active:bg-white/20"
+        style="color: var(--color2); min-width: 48px; min-height: 48px;"
+        aria-label="Close mobile menu"
+        type="button"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Links -->
+    <nav class="p-6">
+      <ul class="space-y-4 mobile-nav-links">
+        {navItems.map((link) => (
+          <li style="opacity: 0; transform: translateX(50px); transition: all 0.3s ease;">
+            <a
+              href={link.url}
+              class="mobile-nav-link block py-3 px-4 rounded-lg transition-all duration-300 font-medium"
+              style="color: var(--color1)"
+              aria-label={link.label}
+            >
+              {link.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Mobile CTA -->
+      <div class="mt-8 pt-6" style="border-top: 1px solid var(--color4)">
+        <a 
+          href="#contacto"
+          class="block w-full text-white text-center py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+          style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%)"
+        >
+          Solicitar Cotización
+        </a>
+        
+        <!-- Social Links -->
+        <div class="flex justify-center space-x-4 mt-6 mobile-social-icons">
+          <a 
+            href="https://www.instagram.com/cleanstar_detailing?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+            target="_blank"
+            class="social-icon w-10 h-10 rounded-lg flex items-center justify-center transition-colors duration-300"
+            style="background-color: var(--color4); opacity: 0; transform: scale(0);"
+            aria-label="Instagram"
+          >
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a 
+            href="https://wa.me/56944587750"
+            target="_blank"
+            class="social-icon w-10 h-10 bg-green-600 hover:bg-green-700 rounded-lg flex items-center justify-center transition-colors duration-300"
+            style="opacity: 0; transform: scale(0);"
+            aria-label="WhatsApp"
+          >
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<style>
+/* Logo responsivo */
+.logo-container,
+.logo-container-mobile {
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  overflow: visible; /* Permite que el SVG sobresalga */
+  position: relative;
+}
+
+.logo-container:hover,
+.logo-container-mobile:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Asegurar que el logo se vea bien en diferentes tamaños */
+.logo-container svg,
+.logo-container-mobile svg {
+  object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 640px) {
+  .logo-container {
+    width: 4rem; /* 16 en móvil - tamaño normal del contenedor */
+    height: 4rem;
+  }
+  
+  .logo-container svg {
+    width: 9rem !important; /* 36 - SVG un poco más grande */
+    height: 9rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .logo-container {
+    width: 5rem; /* 20 en desktop - tamaño normal del contenedor */
+    height: 5rem;
+  }
+  
+  .logo-container svg {
+    width: 11rem !important; /* 44 - SVG un poco más grande */
+    height: 11rem !important;
+  }
+}
+
+/* Prevent any menu duplication or conflicts */
+#main-header {
+  isolation: isolate;
+}
+
+/* Mobile menu container - completely hidden by default */
+#mobile-menu-container {
+  isolation: isolate;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* When mobile menu is active, show container */
+#mobile-menu-container.active {
+  z-index: 40;
+  pointer-events: auto;
+  display: block !important;
+}
+
+/* Navbar Background with Glass Effect */
+#main-nav {
+  background: rgba(20, 20, 20, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Mobile menu strict positioning and visibility */
+#mobile-menu {
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 50;
+}
+
+#mobile-menu-overlay {
+  backdrop-filter: blur(8px);
+  z-index: 40;
+}
+
+/* Force hidden state when closed */
+#mobile-menu.translate-x-full {
+  transform: translateX(100%) !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+#mobile-menu:not(.translate-x-full) {
+  transform: translateX(0) !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+}
+
+#mobile-menu-overlay.opacity-0 {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+#mobile-menu-overlay:not(.opacity-0) {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+}
+
+/* Hide mobile menu on desktop completely */
+@media (min-width: 768px) {
+  #mobile-menu-container {
+    display: none !important;
+  }
+}
+
+/* Desktop nav link effects */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color4), var(--color3));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::before {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: var(--color2) !important;
+}
+
+/* Hamburger Animation */
+#mobile-menu-button.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+#mobile-menu-button.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+#mobile-menu-button.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile nav link effects */
+.mobile-nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color4), var(--color3));
+  opacity: 0.1;
+  transition: width 0.3s ease;
+  border-radius: 8px;
+}
+
+.mobile-nav-link:hover::before {
+  width: 100%;
+}
+
+.mobile-nav-link:hover {
+  color: var(--color2) !important;
+}
+
+/* Social icon hover effects */
+.social-icon {
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Close button improvements */
+#mobile-menu-close {
+  position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+#mobile-menu-close:before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  background: transparent;
+  border-radius: 50%;
+}
+
+#mobile-menu-close:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  transform: scale(1.05);
+}
+
+#mobile-menu-close:active {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: scale(0.95);
+}
+
+/* Scrolled navbar effect */
+.navbar-scrolled {
+  background: rgba(10, 10, 10, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+</style>
+
+<script>
+// Initialize navbar without GSAP to avoid errors
+let navbarInitialized = false;
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Prevent multiple initializations
+  if (navbarInitialized) {
+    return;
+  }
+  navbarInitialized = true;
+
+  // Remove any duplicate mobile menu containers
+  const mobileMenuContainers = document.querySelectorAll('#mobile-menu-container');
+  if (mobileMenuContainers.length > 1) {
+    for (let i = 1; i < mobileMenuContainers.length; i++) {
+      mobileMenuContainers[i].remove();
+    }
+  }
+
+  // Ensure mobile menu is hidden initially
+  const mobileMenuContainer = document.getElementById('mobile-menu-container');
+  if (mobileMenuContainer) {
+    mobileMenuContainer.style.display = 'none';
+    mobileMenuContainer.classList.remove('active');
+  }
+
+  initMobileMenu();
+  initSmoothScroll();
+  initNavbarScroll();
+});
+
+// Mobile Menu Functions
+function initMobileMenu() {
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+  const mobileMenuContainer = document.getElementById('mobile-menu-container');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  // Ensure elements exist
+  if (!mobileMenuButton || !mobileMenu || !mobileMenuOverlay || !mobileMenuContainer) {
+    return;
+  }
+
+  function openMobileMenu() {
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Show container first
+    if (mobileMenuContainer) {
+      mobileMenuContainer.classList.add('active');
+      mobileMenuContainer.style.display = 'block';
+    }
+    
+    // Update states
+    if (mobileMenuButton) {
+      mobileMenuButton.classList.add('active');
+    }
+    if (mobileMenu) {
+      mobileMenu.classList.remove('translate-x-full');
+    }
+    if (mobileMenuOverlay) {
+      mobileMenuOverlay.classList.remove('opacity-0', 'invisible');
+    }
+    
+    // Force styles
+    if (mobileMenuOverlay) {
+      mobileMenuOverlay.style.pointerEvents = 'auto';
+      mobileMenuOverlay.style.visibility = 'visible';
+    }
+    if (mobileMenu) {
+      mobileMenu.style.pointerEvents = 'auto';
+      mobileMenu.style.visibility = 'visible';
+    }
+    
+    // Animate mobile menu items using CSS transitions
+    const menuItems = document.querySelectorAll('.mobile-nav-links li');
+    if (menuItems.length > 0) {
+      menuItems.forEach((item, index) => {
+        setTimeout(() => {
+          (item as HTMLElement).style.opacity = '1';
+          (item as HTMLElement).style.transform = 'translateX(0)';
+        }, index * 100 + 200);
+      });
+    }
+    
+    const socialIcons = document.querySelectorAll('.mobile-social-icons .social-icon');
+    if (socialIcons.length > 0) {
+      socialIcons.forEach((icon, index) => {
+        setTimeout(() => {
+          (icon as HTMLElement).style.opacity = '1';
+          (icon as HTMLElement).style.transform = 'scale(1)';
+        }, index * 100 + 600);
+      });
+    }
+  }
+
+  function closeMobileMenu() {
+    // Restore body scroll
+    document.body.style.overflow = '';
+    
+    // Update states immediately and simply
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const container = document.getElementById('mobile-menu-container');
+    
+    if (button) button.classList.remove('active');
+    if (menu) menu.classList.add('translate-x-full');
+    if (overlay) overlay.classList.add('opacity-0', 'invisible');
+    
+    // Hide container
+    setTimeout(() => {
+      if (container) {
+        container.classList.remove('active');
+        container.style.display = 'none';
+      }
+    }, 300);
+  }
+
+  // Event listeners
+  if (mobileMenuButton) {
+    mobileMenuButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openMobileMenu();
+    });
+  }
+  
+  // Simplified close button event
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMobileMenu();
+    });
+  }
+  
+  if (mobileMenuOverlay) {
+    mobileMenuOverlay.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMobileMenu();
+    });
+  }
+
+  // Close menu when clicking nav links
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      closeMobileMenu();
+    });
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMobileMenu();
+    }
+  });
+
+  // Close menu on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      closeMobileMenu();
+    }
+  });
+
+  // Initial state cleanup - ensure menu is hidden
+  closeMobileMenu();
+}
+
+// Smooth scroll for navigation links
+function initSmoothScroll() {
+  const navLinks = document.querySelectorAll('a[href^="#"]');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href')?.substring(1);
+      const targetElement = document.getElementById(targetId || '');
+      
+      if (targetElement) {
+        const targetY = targetElement.offsetTop - 80;
+        window.scrollTo({
+          top: targetY,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+}
+
+// Navbar scroll effect
+function initNavbarScroll() {
+  const navbar = document.querySelector('#main-nav');
+  if (!navbar) return;
+
+  function updateNavbar() {
+    const scrollY = window.scrollY;
+    
+    if (scrollY > 100) {
+      if (navbar) {
+        navbar.classList.add('navbar-scrolled');
+      }
+    } else {
+      if (navbar) {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateNavbar);
+  
+  // Initial call
+  updateNavbar();
+}
+</script>

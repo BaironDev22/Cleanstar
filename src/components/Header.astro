@@ -1,0 +1,53 @@
+---
+import Navbar from './Navbar_Clean.astro';
+---
+
+<!-- Fixed Navigation -->
+<Navbar />
+
+<!-- Back to Top Button -->
+<button 
+  id="back-to-top"
+  class="fixed bottom-6 right-6 w-12 h-12 rounded-full shadow-lg z-40 opacity-0 invisible transition-all duration-300 transform translate-y-4 hover:scale-110"
+  style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%)"
+  aria-label="Volver arriba"
+>
+  <svg class="w-6 h-6 text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+  </svg>
+</button>
+
+<script>
+import { gsap } from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
+
+// Back to Top Button functionality
+function initBackToTop() {
+  const backToTopBtn = document.getElementById('back-to-top');
+  
+  function toggleBackToTop() {
+    if (window.scrollY > 300) {
+      backToTopBtn?.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+      backToTopBtn?.classList.add('opacity-100', 'visible', 'translate-y-0');
+    } else {
+      backToTopBtn?.classList.add('opacity-0', 'invisible', 'translate-y-4');
+      backToTopBtn?.classList.remove('opacity-100', 'visible', 'translate-y-0');
+    }
+  }
+  
+  window.addEventListener('scroll', toggleBackToTop);
+  
+  backToTopBtn?.addEventListener('click', () => {
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: { y: 0 },
+      ease: "power3.inOut"
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initBackToTop);
+</script>
+
