@@ -1,323 +1,198 @@
 ---
-// Hero Component con 2 imágenes verticales y animaciones GSAP modernas
-import OptimizedImage from './OptimizedImage.astro';
+// Hero Component con AOS - Versión migrada
+import AnimationProvider from './AnimationProvider.astro';
 import heroImage1 from '../assets/images/hero/IMG_2099.webp';
 import heroImage2 from '../assets/images/hero/IMG_2263.webp';
 ---
 
-<section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden pt-28 md:pt-32" id="inicio">
+<section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden pt-2 md:pt-4" id="inicio" data-aos-section="hero">
   <!-- Background Pattern -->
   <div class="absolute inset-0 bg-pattern opacity-5">
     <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, white 1px, transparent 1px); background-size: 40px 40px;"></div>
   </div>
   
   <!-- Hero Container -->
-  <div class="hero-container max-w-7xl mx-auto px-4 py-20 relative z-10">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
+  <div class="hero-container max-w-7xl mx-auto px-4 py-6 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-8 items-center">
       
       <!-- Left Column - Content -->
       <div class="hero-content space-y-8">
         <!-- Main Title -->
         <div class="hero-title-container">
           <h1 class="hero-title text-5xl lg:text-7xl font-bold leading-tight">
-            <span class="block hero-title-line-1" style="color: var(--color1)">Cleanstar</span>
-            <span class="block hero-title-line-2 text-white">Detailing</span>
-            <span class="block hero-title-line-3 text-3xl lg:text-4xl font-normal mt-2" style="color: var(--color2)">
-              Perfección en cada detalle
-            </span>
+            <AnimationProvider animation="fade-up" delay={100} duration={600}>
+              <span class="block hero-title-line-1 text-gray-300">Cleanstar</span>
+            </AnimationProvider>
+            
+            <AnimationProvider animation="fade-up" delay={200} duration={600}>
+              <span class="block hero-title-line-2 text-white">Detailing</span>
+            </AnimationProvider>
+            
+            <AnimationProvider animation="fade-up" delay={300} duration={600}>
+              <span class="block hero-title-line-3 text-3xl lg:text-4xl font-normal mt-2 text-gray-400">
+                Perfección en cada detalle
+              </span>
+            </AnimationProvider>
           </h1>
         </div>
 
         <!-- Subtitle -->
-        <div class="hero-subtitle-container">
-          <p class="hero-subtitle text-xl lg:text-2xl leading-relaxed max-w-xl" style="color: var(--color6)">
-            Transformamos tu vehículo con servicios profesionales de 
-            <span style="color: var(--color4)" class="font-semibold">detailing automotriz</span> 
-            y <span style="color: var(--color3)" class="font-semibold">tratamientos cerámicos</span> 
-            de última generación.
-          </p>
-        </div>
+        <AnimationProvider animation="fade-up" delay={400} duration={700}>
+          <div class="hero-subtitle-container">
+            <p class="hero-subtitle text-xl lg:text-2xl leading-relaxed max-w-xl text-white">
+              Transformamos tu vehículo con servicios profesionales de 
+              <span class="font-semibold text-gray-300">detailing automotriz</span> 
+              y <span class="font-semibold text-gray-400">tratamientos cerámicos</span> 
+              de última generación.
+            </p>
+          </div>
+        </AnimationProvider>
 
         <!-- Features List -->
         <div class="hero-features space-y-4">
-          <div class="feature-item flex items-center space-x-3">
-            <div class="feature-icon w-6 h-6 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%)">
-              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
+          <AnimationProvider animation="fade-up" delay={500} duration={800}>
+            <div class="feature-item flex items-center space-x-3">
+              <div class="feature-icon w-6 h-6 rounded-full flex items-center justify-center bg-gradient-to-r from-gray-600 to-gray-700">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <span class="text-lg text-gray-300">Protección cerámica de hasta 5 años</span>
             </div>
-            <span class="text-lg" style="color: var(--color2)">Protección cerámica de hasta 5 años</span>
-          </div>
+          </AnimationProvider>
           
-          <div class="feature-item flex items-center space-x-3">
-            <div class="feature-icon w-6 h-6 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%)">
-              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
+          <AnimationProvider animation="fade-up" delay={600} duration={800}>
+            <div class="feature-item flex items-center space-x-3">
+              <div class="feature-icon w-6 h-6 rounded-full flex items-center justify-center bg-gradient-to-r from-gray-600 to-gray-700">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <span class="text-lg text-gray-300">Productos premium de calidad mundial</span>
             </div>
-            <span class="text-lg" style="color: var(--color2)">Productos premium de calidad mundial</span>
-          </div>
+          </AnimationProvider>
           
-          <div class="feature-item flex items-center space-x-3">
-            <div class="feature-icon w-6 h-6 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%)">
-              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
+          <AnimationProvider animation="fade-up" delay={700} duration={800}>
+            <div class="feature-item flex items-center space-x-3">
+              <div class="feature-icon w-6 h-6 rounded-full flex items-center justify-center bg-gradient-to-r from-gray-600 to-gray-700">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <span class="text-lg text-gray-300">Servicio a domicilio en Villa Alemana</span>
             </div>
-            <span class="text-lg" style="color: var(--color2)">Servicio a domicilio en Villa Alemana</span>
-          </div>
+          </AnimationProvider>
         </div>
 
         <!-- CTA Buttons -->
         <div class="hero-cta space-y-4 sm:space-y-0 sm:space-x-6 sm:flex">
-          <a 
-            href="#contacto"
-            class="cta-primary inline-block px-8 py-4 rounded-full font-bold text-lg text-white transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-            style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%)"
-          >
-            Solicitar Cotización
-          </a>
+          <AnimationProvider animation="zoom-in" delay={1100} duration={600} easing="ease-out-back">
+            <a 
+              href="#contacto"
+              class="cta-primary inline-block px-8 py-4 rounded-full font-bold text-lg text-white transition-all duration-300 transform hover:scale-105 hover:shadow-xl bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-500 hover:to-gray-700"
+            >
+              Solicitar Cotización
+            </a>
+          </AnimationProvider>
           
-          <a 
-            href="https://wa.me/56944587750"
-            target="_blank"
-            class="cta-secondary inline-block px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 border-2"
-            style="color: var(--color1); border-color: var(--color1)"
-          >
-            WhatsApp Directo
-          </a>
+          <AnimationProvider animation="zoom-in" delay={1200} duration={600} easing="ease-out-back">
+            <a 
+              href="https://wa.me/56944587750"
+              target="_blank"
+              class="cta-secondary inline-block px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 border-2"
+              style="color: var(--color1); border-color: var(--color1)"
+            >
+              WhatsApp Directo
+            </a>
+          </AnimationProvider>
         </div>
 
         <!-- Social Proof -->
-        <div class="hero-social-proof">
-          <div class="flex items-center space-x-6 pt-8">
-            <div class="stat-item text-center">
-              <div class="stat-number text-3xl font-bold" style="color: var(--color4)">500+</div>
-              <div class="stat-label text-sm" style="color: var(--color2)">Autos Detallados</div>
-            </div>
-            <div class="stat-divider w-px h-12 opacity-30" style="background-color: var(--color2)"></div>
-            <div class="stat-item text-center">
-              <div class="stat-number text-3xl font-bold" style="color: var(--color4)">5★</div>
-              <div class="stat-label text-sm" style="color: var(--color2)">Calificación</div>
-            </div>
-            <div class="stat-divider w-px h-12 opacity-30" style="background-color: var(--color2)"></div>
-            <div class="stat-item text-center">
-              <div class="stat-number text-3xl font-bold" style="color: var(--color4)">3+</div>
-              <div class="stat-label text-sm" style="color: var(--color2)">Años Experiencia</div>
+        <AnimationProvider animation="fade-up" delay={1300} duration={600}>
+          <div class="hero-social-proof">
+            <div class="flex items-center space-x-6 pt-8">
+              <div class="stat-item text-center">
+                <div class="stat-number text-3xl font-bold" style="color: var(--color4)">500+</div>
+                <div class="stat-label text-sm" style="color: var(--color2)">Autos Detallados</div>
+              </div>
+              <div class="stat-divider w-px h-12 opacity-30" style="background-color: var(--color2)"></div>
+              <div class="stat-item text-center">
+                <div class="stat-number text-3xl font-bold" style="color: var(--color4)">5★</div>
+                <div class="stat-label text-sm" style="color: var(--color2)">Calificación</div>
+              </div>
+              <div class="stat-divider w-px h-12 opacity-30" style="background-color: var(--color2)"></div>
+              <div class="stat-item text-center">
+                <div class="stat-number text-3xl font-bold" style="color: var(--color4)">3+</div>
+                <div class="stat-label text-sm" style="color: var(--color2)">Años Experiencia</div>
+              </div>
             </div>
           </div>
-        </div>
+        </AnimationProvider>
       </div>
 
       <!-- Right Column - Images -->
       <div class="hero-images-container relative">
         <!-- Image Grid -->
-        <div class="images-grid grid grid-cols-2 gap-6 h-[700px]">
+        <div class="images-grid grid grid-cols-2 gap-6 h-[500px]">
           
           <!-- First Image - Proceso -->
-          <div class="image-wrapper-1 relative overflow-hidden rounded-2xl shadow-2xl">
-            <div class="image-container h-full">
-              <OptimizedImage
-                src={heroImage1}
-                alt="Proceso de detailing automotriz profesional en acción"
-                width={300}
-                height={700}
-                class="hero-image-1 w-full h-full object-cover"
-                loading="eager"
-              />
+          <AnimationProvider animation="fade-left" delay={600} duration={800}>
+            <div class="image-wrapper-1 relative overflow-hidden rounded-2xl shadow-2xl">
+              <div class="image-container h-full">
+                <img
+                  src={heroImage1.src}
+                  alt="Proceso de detailing automotriz profesional en acción"
+                  width="300"
+                  height="700"
+                  class="hero-image-1 w-full h-full object-cover"
+                  loading="eager"
+                />
+              </div>
             </div>
-          </div>
+          </AnimationProvider>
 
           <!-- Second Image - Resultado -->
-          <div class="image-wrapper-2 relative overflow-hidden rounded-2xl shadow-2xl mt-16">
-            <div class="image-container h-full">
-              <OptimizedImage
-                src={heroImage2}
-                alt="Resultado final de detailing con acabado perfecto"
-                width={300}
-                height={700}
-                class="hero-image-2 w-full h-full object-cover"
-                loading="eager"
-              />
+          <AnimationProvider animation="fade-left" delay={800} duration={800}>
+            <div class="image-wrapper-2 relative overflow-hidden rounded-2xl shadow-2xl mt-16">
+              <div class="image-container h-full">
+                <img
+                  src={heroImage2.src}
+                  alt="Resultado final de detailing con acabado perfecto"
+                  width="300"
+                  height="700"
+                  class="hero-image-2 w-full h-full object-cover"
+                  loading="eager"
+                />
+              </div>
             </div>
-          </div>
+          </AnimationProvider>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Scroll Indicator -->
-  <div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2">
-    <div class="scroll-mouse w-6 h-10 border-2 rounded-full flex justify-center" style="border-color: var(--color2)">
-      <div class="scroll-wheel w-1 h-3 rounded-full mt-2" style="background: var(--color2)"></div>
-    </div>
-    <p class="text-sm mt-2 text-center" style="color: var(--color2)">Desliza para ver más</p>
-  </div>
 </section>
 
-<script>
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Estados iniciales simples
-  gsap.set([
-    '.hero-title-line-1', 
-    '.hero-title-line-2', 
-    '.hero-title-line-3',
-    '.hero-subtitle',
-    '.feature-item',
-    '.cta-primary',
-    '.cta-secondary',
-    '.stat-item',
-    '.stat-divider',
-    '.image-wrapper-1',
-    '.image-wrapper-2',
-    '.scroll-indicator'
-  ], {
-    opacity: 0,
-    y: 30
-  });
-
-  // Timeline principal - Animación al cargar la página
-  const mainTl = gsap.timeline({
-    delay: 0.1, // Reducido de 0.3 a 0.1
-    scrollTrigger: {
-      trigger: '#inicio',
-      start: 'top 80%',
-      toggleActions: 'play none none reverse'
-    }
-  });
-
-  // Animaciones secuenciales descendentes - MUCHO MÁS RÁPIDAS
-  mainTl
-    // 1. Título línea por línea
-    .to('.hero-title-line-1', {
-      opacity: 1,
-      y: 0,
-      duration: 0.4, // Reducido de 0.8 a 0.4
-      ease: "power2.out"
-    })
-    .to('.hero-title-line-2', {
-      opacity: 1,
-      y: 0,
-      duration: 0.4, // Reducido de 0.8 a 0.4
-      ease: "power2.out"
-    }, "-=0.3") // Solapado más
-    .to('.hero-title-line-3', {
-      opacity: 1,
-      y: 0,
-      duration: 0.4, // Reducido de 0.8 a 0.4
-      ease: "power2.out"
-    }, "-=0.3") // Solapado más
-    
-    // 2. Subtítulo
-    .to('.hero-subtitle', {
-      opacity: 1,
-      y: 0,
-      duration: 0.4, // Reducido de 0.8 a 0.4
-      ease: "power2.out"
-    }, "-=0.2") // Solapado más
-    
-    // 3. Features (todos a la vez con stagger)
-    .to('.feature-item', {
-      opacity: 1,
-      y: 0,
-      duration: 0.3, // Reducido de 0.6 a 0.3
-      ease: "power2.out",
-      stagger: 0.05 // Reducido de 0.1 a 0.05
-    }, "-=0.2") // Solapado más
-    
-    // 4. Botones CTA
-    .to(['.cta-primary', '.cta-secondary'], {
-      opacity: 1,
-      y: 0,
-      duration: 0.3, // Reducido de 0.6 a 0.3
-      ease: "power2.out",
-      stagger: 0.05 // Reducido de 0.1 a 0.05
-    }, "-=0.2") // Solapado más
-    
-    // 5. Stats
-    .to(['.stat-item', '.stat-divider'], {
-      opacity: 1,
-      y: 0,
-      duration: 0.3, // Reducido de 0.6 a 0.3
-      ease: "power2.out",
-      stagger: 0.03 // Reducido de 0.05 a 0.03
-    }, "-=0.2") // Solapado más
-    
-    // 6. Imágenes
-    .to(['.image-wrapper-1', '.image-wrapper-2'], {
-      opacity: 1,
-      y: 0,
-      duration: 0.4, // Reducido de 0.8 a 0.4
-      ease: "power2.out",
-      stagger: 0.1 // Reducido de 0.2 a 0.1
-    }, "-=0.3") // Solapado más
-    
-    // 7. Indicador de scroll
-    .to('.scroll-indicator', {
-      opacity: 1,
-      y: 0,
-      duration: 0.3, // Reducido de 0.6 a 0.3
-      ease: "power2.out"
-    }, "-=0.2"); // Solapado más
-
-  // Animación simple de parallax en scroll
-  gsap.to('.hero-content', {
-    yPercent: -20,
-    ease: "none",
-    scrollTrigger: {
-      trigger: '#inicio',
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 1
-    }
-  });
-
-  gsap.to('.hero-images-container', {
-    yPercent: -10,
-    ease: "none",
-    scrollTrigger: {
-      trigger: '#inicio',
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 1
-    }
-  });
-
-  // Hover effects simples para botones
-  const ctaButtons = document.querySelectorAll('.cta-primary, .cta-secondary');
-  ctaButtons.forEach(button => {
-    button.addEventListener('mouseenter', () => {
-      gsap.to(button, {
-        scale: 1.05,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-    });
-    
-    button.addEventListener('mouseleave', () => {
-      gsap.to(button, {
-        scale: 1,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-    });
-  });
-
-  // Scroll indicator pulse
-  gsap.to('.scroll-wheel', {
-    y: 6,
-    duration: 1.5,
-    ease: "power1.inOut",
-    yoyo: true,
-    repeat: -1
-  });
-});
-</script>
+<!-- CTA Servicios - Debajo del Hero con menos espacio -->
+<div class="w-full py-4 flex justify-center">
+  <AnimationProvider animation="fade-up" delay={800} duration={600}>
+    <a 
+      href="#servicios" 
+      class="cta-nuevo group inline-flex items-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl"
+      style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%); border: 1px solid var(--color3);"
+    >
+      <span class="font-semibold text-lg" style="color: var(--color1);">
+        Descubre Nuestros Servicios
+      </span>
+      
+      <div class="flex items-center justify-center w-8 h-8 rounded-full transition-transform duration-300 group-hover:translate-x-1" 
+           style="background: var(--color2);">
+        <svg class="w-4 h-4" style="color: var(--color5);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </a>
+  </AnimationProvider>
+</div>
 
 <style>
 .hero-section {
@@ -346,20 +221,51 @@ document.addEventListener('DOMContentLoaded', () => {
   will-change: transform;
 }
 
-.scroll-mouse {
-  animation: scrollBounce 2s infinite;
+/* Features animation - fallback CSS */
+.feature-item {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUpFeature 0.8s ease-out forwards;
 }
 
-@keyframes scrollBounce {
-  0%, 20%, 50%, 80%, 100% {
+.feature-item:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.feature-item:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.feature-item:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+@keyframes fadeUpFeature {
+  to {
+    opacity: 1;
     transform: translateY(0);
   }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
+}
+
+/* CTA Servicios - Estilos nuevos */
+.cta-nuevo {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-nuevo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.5s;
+}
+
+.cta-nuevo:hover::before {
+  left: 100%;
 }
 
 .stat-number {
@@ -369,22 +275,16 @@ document.addEventListener('DOMContentLoaded', () => {
   background-clip: text;
 }
 
-/* Asegurar visibilidad de elementos del título */
-.hero-title-line-1,
-.hero-title-line-2,
-.hero-title-line-3,
-.hero-subtitle,
-.feature-item,
-.cta-primary,
-.cta-secondary,
-.stat-item {
-  opacity: 1; /* Fallback por si GSAP no se carga */
+/* Hover effects para botones */
+.cta-primary:hover,
+.cta-secondary:hover {
+  transform: scale(1.05);
 }
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .images-grid {
-    height: 500px;
+    height: 400px;
   }
   
   .image-wrapper-2 {
@@ -395,13 +295,23 @@ document.addEventListener('DOMContentLoaded', () => {
 @media (max-width: 768px) {
   .hero-container {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
   
   .images-grid {
-    height: 400px;
+    height: 300px;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+  }
+  
+  .cta-nuevo {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  
+  /* Animaciones más suaves en móvil */
+  .feature-item {
+    animation-duration: 0.5s;
   }
 }
 </style>

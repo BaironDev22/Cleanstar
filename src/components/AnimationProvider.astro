@@ -1,0 +1,57 @@
+---
+// AnimationProvider.astro - Componente modular para AOS
+export interface Props {
+  animation?: string;
+  duration?: number;
+  delay?: number;
+  offset?: number;
+  easing?: string;
+  once?: boolean;
+  mirror?: boolean;
+  anchorPlacement?: string;
+}
+
+const {
+  animation = 'fade-up',
+  duration = 800,
+  delay = 0,
+  offset = 120,
+  easing = 'ease-out-cubic',
+  once = true,
+  mirror = false,
+  anchorPlacement = 'top-bottom'
+} = Astro.props;
+---
+
+<div 
+  data-aos={animation}
+  data-aos-duration={duration}
+  data-aos-delay={delay}
+  data-aos-offset={offset}
+  data-aos-easing={easing}
+  data-aos-once={once}
+  data-aos-mirror={mirror}
+  data-aos-anchor-placement={anchorPlacement}
+  class="aos-element"
+>
+  <slot />
+</div>
+
+<style>
+.aos-element {
+  transition-property: opacity, transform;
+}
+
+/* Custom easing curves */
+[data-aos][data-aos-easing="ease-out-cubic"] {
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+[data-aos][data-aos-easing="ease-out-back"] {
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+[data-aos][data-aos-easing="ease-out-elastic"] {
+  transition-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+</style>

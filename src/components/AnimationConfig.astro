@@ -1,0 +1,64 @@
+---
+// AnimationConfig.astro - Configuración global de AOS
+import 'aos/dist/aos.css';
+---
+
+<script>
+import AOS from 'aos';
+
+// Configuración centralizada de AOS
+const AOS_CONFIG = {
+  offset: 50,
+  delay: 0,
+  duration: 600,
+  once: true,
+  mirror: false,
+  disable: false
+};
+
+// Inicializar AOS cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    AOS.init(AOS_CONFIG);
+    
+    // Refresh en resize para responsive
+    window.addEventListener('resize', function() {
+      AOS.refresh();
+    });
+    
+    console.log('AOS inicializado correctamente');
+  } catch (error) {
+    console.error('Error al inicializar AOS:', error);
+  }
+});
+</script>
+
+<style>
+/* Mejoras visuales para AOS */
+[data-aos] {
+  pointer-events: none;
+}
+
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+
+/* Configuraciones responsive más suaves */
+@media (max-width: 768px) {
+  [data-aos] {
+    --aos-offset: 50px;
+  }
+  
+  [data-aos="slide-up"] {
+    --aos-duration: 400ms;
+  }
+  
+  [data-aos="fade-up"] {
+    --aos-duration: 400ms;
+  }
+  
+  [data-aos="zoom-in"] {
+    --aos-duration: 300ms;
+  }
+}
+</style>

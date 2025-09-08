@@ -56,13 +56,18 @@ export const galleryImages: ImageData[] = [
 ### 3. **Usar en Componentes:**
 ```astro
 ---
-import OptimizedImage from '../components/OptimizedImage.astro';
-import { galleryImages } from '../utils/imageConfig';
+import heroImage from '../assets/images/hero/mi-imagen.webp';
 ---
 
 <!-- Imagen individual -->
-<OptimizedImage
-  src="../assets/images/hero/mi-imagen.webp"
+<img
+  src={heroImage.src}
+  alt="Descripción de la imagen"
+  width="800"
+  height="600"
+  class="w-full h-auto object-cover"
+  loading="lazy"
+/>
   alt="Descripción de la imagen"
   width={800}
   height={600}

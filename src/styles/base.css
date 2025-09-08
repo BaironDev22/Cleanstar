@@ -1,11 +1,11 @@
-/* Definición de colores CSS custom properties */
+/* Definición de colores CSS custom properties - FORZADO PARA VISIBILIDAD */
 :root {
-  --color1: #b5b5b5;
-  --color2: #939393;
-  --color3: #707070;
-  --color4: #4e4e4e;
-  --color5: #2b2b2b;
-  --color6: #ffffff;
+  --color1: #d1d5db !important; /* gray-300 */
+  --color2: #9ca3af !important; /* gray-400 */
+  --color3: #6b7280 !important; /* gray-500 */
+  --color4: #374151 !important; /* gray-700 */
+  --color5: #111827 !important; /* gray-900 */
+  --color6: #ffffff !important; /* white */
 }
 
 /* Reset básico */
@@ -18,6 +18,45 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Body styles */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+  color: #ffffff !important;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Asegurar que TODOS los textos sean visibles */
+*, *::before, *::after {
+  color: #ffffff !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff !important;
+}
+
+p, span, div {
+  color: #ffffff !important;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+/* Solo excepciones para textos específicos */
+.text-gray-300 {
+  color: #d1d5db !important;
+}
+
+.text-gray-400 {
+  color: #9ca3af !important;
+}
+
+.text-gray-500 {
+  color: #6b7280 !important;
 }
 
 /* Custom scrollbar */
