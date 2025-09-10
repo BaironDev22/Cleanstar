@@ -6,6 +6,7 @@ export interface Props {
 
 const { title, description } = Astro.props;
 import AnimationConfig from '../components/AnimationConfig.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 
 // Navbar component
 const { pathname } = Astro.url;
@@ -275,11 +276,11 @@ const navItems = [
 		        <div class="mt-6 text-center">
 		          <p class="text-sm mb-2" style="color: var(--color2);">Contáctanos directamente:</p>
 		          <a 
-		            href="tel:+56912345678" 
+		            href="tel:+56947346095" 
 		            class="font-medium block mb-1 hover:opacity-80 transition-opacity duration-300"
 		            style="color: var(--color1);"
 		          >
-		            +56 9 1234 5678
+		            +56 9 4734 6095
 		          </a>
 		          <a 
 		            href="mailto:info@cleanstar.cl" 
@@ -457,6 +458,9 @@ const navItems = [
 		    height: 3.5rem;
 		  }
 		</style>
+
+		<!-- WhatsApp Float Button -->
+		<WhatsAppFloat />
 
 		<script>
 		  document.addEventListener('DOMContentLoaded', function() {
