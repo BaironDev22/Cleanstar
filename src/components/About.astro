@@ -1,5 +1,11 @@
 ---
 import AnimationProvider from './AnimationProvider.astro';
+import img1 from '../assets/images/gallery/IMG_2403.webp';
+import img2 from '../assets/images/gallery/IMG_2410.webp';
+import img3 from '../assets/images/gallery/IMG_2413.webp';
+import img4 from '../assets/images/gallery/IMG_2487.webp';
+import img5 from '../assets/images/gallery/IMG_2633.webp';
+import img6 from '../assets/images/gallery/IMG_2672.webp';
 ---
 
 <section id="nosotros" class="py-20 relative overflow-hidden">
@@ -20,7 +26,7 @@ import AnimationProvider from './AnimationProvider.astro';
         <div class="space-y-6 text-lg leading-relaxed about-text text-white">
           <AnimationProvider animation="fade-up" delay={200}>
             <p class="about-paragraph">
-              En <strong class="text-gray-300">Cleanstar Detailing</strong>, nos dedicamos a 
+              Hola! somos <strong class="text-gray-300">Cleanstar Detailing</strong>, empresa SPA nacida en 2024, nos dedicamos a 
               <span class="font-semibold text-gray-400">cuidar y proteger</span> la pintura de tu vehículo con 
               <span class="font-semibold text-gray-300">técnicas adecuadas</span> y productos de la más alta calidad.
             </p>
@@ -91,26 +97,47 @@ import AnimationProvider from './AnimationProvider.astro';
         </AnimationProvider>
       </div>
 
-      <!-- Image/Visual -->
+      <!-- Gallery Carousel -->
       <AnimationProvider animation="fade-right" delay={500}>
-        <div class="about-image">
-          <div class="relative">
-            <!-- Placeholder for car detailing image -->
-            <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-xl main-visual">
-              <div class="w-full h-96 flex items-center justify-center" style="background: linear-gradient(135deg, var(--color1) 0%, var(--color2) 100%)">
-                <div class="text-center text-white visual-content">
-                  <svg class="w-20 h-20 mx-auto mb-4 opacity-80" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M4 9V7a6 6 0 1112 0v2h1a2 2 0 012 2v5a2 2 0 01-2 2H3a2 2 0 01-2-2v-5a2 2 0 012-2h1zm8-2v2H8V7a4 4 0 118 0z"/>
-                  </svg>
-                  <p class="text-lg font-medium">Cuidado Profesional</p>
-                  <p class="text-sm opacity-80">Para tu vehículo</p>
-                </div>
+        <div class="gallery-carousel-container">
+          <div class="carousel-wrapper relative rounded-2xl overflow-hidden shadow-xl">
+            <!-- Carousel Track -->
+            <div class="carousel-track">
+              <div class="carousel-slide">
+                <img src={img1.src} alt="Trabajo de detailing 1" class="carousel-image" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src={img2.src} alt="Trabajo de detailing 2" class="carousel-image" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src={img3.src} alt="Trabajo de detailing 3" class="carousel-image" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src={img4.src} alt="Trabajo de detailing 4" class="carousel-image" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src={img5.src} alt="Trabajo de detailing 5" class="carousel-image" loading="lazy">
+              </div>
+              <div class="carousel-slide">
+                <img src={img6.src} alt="Trabajo de detailing 6" class="carousel-image" loading="lazy">
               </div>
             </div>
-            
+
+            <!-- Navigation Buttons -->
+            <button class="carousel-btn carousel-btn-prev" aria-label="Anterior">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+            <button class="carousel-btn carousel-btn-next" aria-label="Siguiente">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+
             <!-- Decorative elements -->
-            <div class="absolute -top-4 -right-4 w-24 h-24 rounded-full opacity-20 decorative-element animate-float" style="background-color: var(--color3)"></div>
-            <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full opacity-20 decorative-element animate-float-delay" style="background-color: var(--color2)"></div>
+            <div class="absolute -top-4 -right-4 w-24 h-24 rounded-full opacity-20 decorative-element animate-float" style="background-color: var(--color3); z-index: -1;"></div>
+            <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full opacity-20 decorative-element animate-float-delay" style="background-color: var(--color2); z-index: -1;"></div>
           </div>
         </div>
       </AnimationProvider>
@@ -174,4 +201,165 @@ import AnimationProvider from './AnimationProvider.astro';
   .main-visual:hover .visual-content {
     transform: translateY(-5px);
   }
+
+  /* Gallery Carousel Styles */
+  .gallery-carousel-container {
+    position: relative;
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    animation: scroll-carousel 30s linear infinite;
+  }
+
+  @keyframes scroll-carousel {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .carousel-wrapper:hover .carousel-track {
+    animation-play-state: paused;
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+
+  .carousel-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+
+  /* Navigation Buttons */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    color: #1f2937;
+    opacity: 0;
+  }
+
+  .carousel-wrapper:hover .carousel-btn {
+    opacity: 1;
+  }
+
+  .carousel-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .carousel-btn-prev {
+    left: 1rem;
+  }
+
+  .carousel-btn-next {
+    right: 1rem;
+  }
+
+  /* Desktop: Show 3 images */
+  @media (min-width: 1024px) {
+    .carousel-slide {
+      flex: 0 0 calc(33.333% - 0.667rem);
+      min-width: calc(33.333% - 0.667rem);
+    }
+  }
+
+  /* Tablet: Show 2 images */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .carousel-slide {
+      flex: 0 0 calc(50% - 0.5rem);
+      min-width: calc(50% - 0.5rem);
+    }
+  }
+
+  /* Mobile: Show 1 image */
+  @media (max-width: 639px) {
+    .carousel-image {
+      height: 300px;
+    }
+
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+    }
+
+    .carousel-btn-prev {
+      left: 0.5rem;
+    }
+
+    .carousel-btn-next {
+      right: 0.5rem;
+    }
+  }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevBtn = document.querySelector('.carousel-btn-prev');
+    const nextBtn = document.querySelector('.carousel-btn-next');
+    
+    if (!track || !slides.length || !prevBtn || !nextBtn) return;
+
+    // Duplicar las imágenes para crear un loop infinito
+    const clonedSlides = Array.from(slides).map(slide => slide.cloneNode(true));
+    clonedSlides.forEach(clone => track.appendChild(clone));
+
+    let currentTranslate = 0;
+    let isPaused = false;
+
+    // Event listeners para los botones
+    prevBtn.addEventListener('click', function() {
+      currentTranslate += 10;
+      track.style.animation = 'none';
+      track.style.transform = `translateX(${currentTranslate}%)`;
+      setTimeout(() => {
+        track.style.animation = '';
+      }, 50);
+    });
+
+    nextBtn.addEventListener('click', function() {
+      currentTranslate -= 10;
+      track.style.animation = 'none';
+      track.style.transform = `translateX(${currentTranslate}%)`;
+      setTimeout(() => {
+        track.style.animation = '';
+      }, 50);
+    });
+
+    // Pausar animación al hacer hover
+    track.addEventListener('mouseenter', function() {
+      isPaused = true;
+    });
+
+    track.addEventListener('mouseleave', function() {
+      isPaused = false;
+    });
+  });
+</script>

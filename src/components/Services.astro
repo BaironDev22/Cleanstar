@@ -1,6 +1,7 @@
 ---
 import AnimationProvider from './AnimationProvider.astro';
-import { Droplets, Sparkles, Brush, Star } from 'lucide-astro';
+import QuoteModal from './QuoteModal.astro';
+import { Droplets, Sparkles, Brush, Star, Zap } from 'lucide-astro';
 ---
 
 <section id="servicios" class="py-20 relative overflow-hidden" data-aos-section="services">
@@ -29,7 +30,7 @@ import { Droplets, Sparkles, Brush, Star } from 'lucide-astro';
     </div>
 
     <!-- Services Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 items-stretch">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
       
       <!-- Service 1: Detailing Básico -->
       <AnimationProvider animation="fade-up" delay={300} duration={700}>
@@ -78,19 +79,92 @@ import { Droplets, Sparkles, Brush, Star } from 'lucide-astro';
             
             <!-- Botón Cotizar Servicio -->
             <div class="mt-6 pt-4 border-t border-gray-700">
-              <a 
-                href="#contacto"
+              <button 
+                onclick="openQuoteModal('wash-go')"
                 class="w-full inline-block text-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                 style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%); color: white;"
               >
                 Cotizar Servicio
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </AnimationProvider>
 
-      <!-- Service 2: Limpieza Profunda -->
+      <!-- Service 2: Glow Up -->
+      <AnimationProvider animation="fade-up" delay={350} duration={700}>
+        <div class="bg-gradient-to-br from-gray-800 via-gray-900 to-black backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 service-card text-white border h-full flex flex-col" style="border-color: var(--color3);">
+          <div class="p-6 flex-1 flex flex-col">
+            <div class="flex items-center mb-3">
+              <div class="w-14 h-14 rounded-full flex items-center justify-center mr-4 service-icon" style="background: linear-gradient(135deg, var(--color2) 0%, var(--color1) 100%)">
+                <Zap size={28} class="text-white" />
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-white">
+                  <span style="color: var(--color1)">Glow Up</span>
+                </h3>
+                <p class="font-medium text-base" style="color: var(--color2)">Renovación Completa</p>
+              </div>
+            </div>
+            <p class="text-gray-300 mb-4 text-lg">
+              Una <span style="color: var(--color1)" class="font-semibold">renovación completa</span> 
+              que deja tu vehículo con un <span style="color: var(--color2)" class="font-semibold">brillo espectacular</span>.
+            </p>
+            
+            <!-- Lista de servicios incluidos -->
+            <div class="space-y-2 flex-1">
+              <div class="flex items-start">
+                <span class="text-green-400 mr-2 text-base">•</span>
+                <span class="text-gray-300 text-base">
+                  <span style="color: var(--color1)" class="font-semibold">Lavado exterior detallado</span> 
+                  con shampoo foam
+                </span>
+              </div>
+              <div class="flex items-start">
+                <span class="text-green-400 mr-2 text-base">•</span>
+                <span class="text-gray-300 text-base">
+                  <span style="color: var(--color2)" class="font-semibold">Aspirado minucioso</span> 
+                  interior
+                </span>
+              </div>
+              <div class="flex items-start">
+                <span class="text-green-400 mr-2 text-base">•</span>
+                <span class="text-gray-300 text-base">
+                  <span style="color: var(--color3)" class="font-semibold">Renovador de plásticos</span> 
+                  interior y exterior
+                </span>
+              </div>
+              <div class="flex items-start">
+                <span class="text-green-400 mr-2 text-base">•</span>
+                <span class="text-gray-300 text-base">
+                  <span style="color: var(--color4)" class="font-semibold">Aplicación de cera</span> 
+                  para protección
+                </span>
+              </div>
+              <div class="flex items-start">
+                <span class="text-green-400 mr-2 text-base">•</span>
+                <span class="text-gray-300 text-base">
+                  <span style="color: var(--color1)" class="font-semibold">Renovador de neumáticos</span> 
+                  relucientes
+                </span>
+              </div>
+            </div>
+            
+            <!-- Botón Cotizar Servicio -->
+            <div class="mt-6 pt-4 border-t border-gray-700">
+              <button 
+                onclick="openQuoteModal('glow-up')"
+                class="w-full inline-block text-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                style="background: linear-gradient(135deg, var(--color2) 0%, var(--color1) 100%); color: white;"
+              >
+                Cotizar Servicio
+              </button>
+            </div>
+          </div>
+        </div>
+      </AnimationProvider>
+
+      <!-- Service 3: Limpieza Profunda -->
       <AnimationProvider animation="fade-up" delay={400} duration={700}>
         <div class="bg-gradient-to-br from-gray-800 via-gray-900 to-black backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 service-card text-white border h-full flex flex-col" style="border-color: var(--color3);">
           <div class="p-6 flex-1 flex flex-col">
@@ -149,19 +223,19 @@ import { Droplets, Sparkles, Brush, Star } from 'lucide-astro';
             
             <!-- Botón Cotizar Servicio -->
             <div class="mt-6 pt-4 border-t border-gray-700">
-              <a 
-                href="#contacto"
+              <button 
+                onclick="openQuoteModal('star-plus')"
                 class="w-full inline-block text-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                 style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%); color: white;"
               >
                 Cotizar Servicio
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </AnimationProvider>
 
-      <!-- Service 3: Restauración de Pintura -->
+      <!-- Service 4: Restauración de Pintura -->
       <AnimationProvider animation="fade-up" delay={500} duration={700}>
         <div class="bg-gradient-to-br from-gray-800 via-gray-900 to-black backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 service-card text-white border h-full flex flex-col" style="border-color: var(--color3);">
           <div class="p-6 flex-1 flex flex-col">
@@ -208,19 +282,19 @@ import { Droplets, Sparkles, Brush, Star } from 'lucide-astro';
             
             <!-- Botón Cotizar Servicio -->
             <div class="mt-6 pt-4 border-t border-gray-700">
-              <a 
-                href="#contacto"
+              <button 
+                onclick="openQuoteModal('glow-star')"
                 class="w-full inline-block text-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                 style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%); color: white;"
               >
                 Cotizar Servicio
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </AnimationProvider>
 
-      <!-- Service 4: Protección Cerámica - TARJETA PRINCIPAL -->
+      <!-- Service 5: Protección Cerámica - TARJETA PRINCIPAL -->
       <AnimationProvider animation="fade-up" delay={600} duration={700}>
         <div class="bg-gradient-to-br from-gray-800 via-gray-900 to-black backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 service-card text-white border-2 h-full flex flex-col" style="border-color: var(--color1);">
           <div class="p-6 relative flex-1 flex flex-col">
@@ -274,13 +348,13 @@ import { Droplets, Sparkles, Brush, Star } from 'lucide-astro';
             
             <!-- Botón Cotizar Servicio -->
             <div class="mt-6 pt-4 border-t border-gray-700">
-              <a 
-                href="#contacto"
+              <button 
+                onclick="openQuoteModal('ceramico')"
                 class="w-full inline-block text-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                 style="background: linear-gradient(135deg, var(--color4) 0%, var(--color3) 100%); color: white;"
               >
                 Cotizar Servicio
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -315,33 +389,4 @@ import { Droplets, Sparkles, Brush, Star } from 'lucide-astro';
   </div>
 </section>
 
-<style>
-.service-card {
-  transition: all 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-}
-
-.service-icon {
-  transition: transform 0.3s ease;
-}
-
-.service-icon:hover {
-  transform: scale(1.1);
-}
-
-/* Hover effects para botones */
-.cta-button:hover {
-  transform: scale(1.05);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-</style>
+<QuoteModal />

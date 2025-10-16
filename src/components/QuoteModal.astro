@@ -1,0 +1,243 @@
+﻿---
+// QuoteModal.astro
+---
+
+<div id="quoteModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+  <div class="bg-gray-900 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-700">
+    
+    <div class="flex items-center justify-between p-6 border-b border-gray-700">
+      <h3 class="text-2xl font-bold text-white">
+        Cotizar <span id="serviceName" style="color: var(--color1);">Servicio</span>
+      </h3>
+      <button type="button" onclick="closeQuoteModal()" class="text-gray-400 hover:text-white text-3xl">&times;</button>
+    </div>
+
+    <div class="p-6">
+      
+      <div class="mb-6">
+        <h4 class="text-lg font-semibold text-white mb-4">Selecciona tu vehículo:</h4>
+        <div class="grid grid-cols-2 gap-3">
+          
+          <label class="cursor-pointer">
+            <input type="radio" name="vehicleType" value="hatchback" class="hidden vehicle-radio">
+            <div class="vehicle-option p-3 rounded-lg border border-gray-600 text-center text-gray-300 hover:border-blue-500 transition-all">
+              <div class="font-medium">Hatchback</div>
+              <div class="text-xs text-gray-400 mt-1 vehicle-price">$18.990</div>
+            </div>
+          </label>
+
+          <label class="cursor-pointer">
+            <input type="radio" name="vehicleType" value="sedan" class="hidden vehicle-radio">
+            <div class="vehicle-option p-3 rounded-lg border border-gray-600 text-center text-gray-300 hover:border-blue-500 transition-all">
+              <div class="font-medium">Sedán</div>
+              <div class="text-xs text-gray-400 mt-1 vehicle-price">$20.990</div>
+            </div>
+          </label>
+
+          <label class="cursor-pointer">
+            <input type="radio" name="vehicleType" value="suv" class="hidden vehicle-radio">
+            <div class="vehicle-option p-3 rounded-lg border border-gray-600 text-center text-gray-300 hover:border-blue-500 transition-all">
+              <div class="font-medium">SUV</div>
+              <div class="text-xs text-gray-400 mt-1 vehicle-price">$22.990</div>
+            </div>
+          </label>
+
+          <label class="cursor-pointer">
+            <input type="radio" name="vehicleType" value="suv-grande" class="hidden vehicle-radio">
+            <div class="vehicle-option p-3 rounded-lg border border-gray-600 text-center text-gray-300 hover:border-blue-500 transition-all">
+              <div class="font-medium">SUV Grande</div>
+              <div class="text-xs text-gray-400 mt-1 vehicle-price">$25.990</div>
+            </div>
+          </label>
+
+        </div>
+      </div>
+
+      <div class="mb-6 p-4 bg-gray-800 rounded-lg border border-gray-700">
+        <div class="flex justify-between items-center">
+          <span class="text-white font-semibold">Precio Estimado:</span>
+          <span id="estimatedPrice" class="text-2xl font-bold" style="color: var(--color1);">Selecciona tu vehículo</span>
+        </div>
+      </div>
+
+      <form id="quoteForm" class="space-y-4">
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Nombre Completo *</label>
+          <input type="text" name="name" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Tu nombre completo">
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Teléfono *</label>
+          <input type="tel" name="phone" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="+56 9 XXXX XXXX">
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Email (opcional)</label>
+          <input type="email" name="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="tu@email.com">
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Comentarios</label>
+          <textarea name="comments" rows="3" class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 resize-none" placeholder="Detalles adicionales..."></textarea>
+        </div>
+
+        <div class="flex gap-4 pt-4">
+          <button type="button" onclick="closeQuoteModal()" class="flex-1 px-6 py-3 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-800 transition-colors">Cancelar</button>
+          <button type="submit" class="flex-1 px-6 py-3 rounded-lg font-semibold text-white transition-all" style="background: linear-gradient(135deg, var(--color2) 0%, var(--color1) 100%);">Enviar Cotización</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .vehicle-option.selected {
+    background: linear-gradient(135deg, var(--color2) 0%, var(--color1) 100%);
+    border-color: var(--color1);
+    color: white;
+  }
+</style>
+
+<script is:inline>
+  const PRICES = {
+    'wash-go': { hatchback: '$18.990', sedan: '$20.990', suv: '$22.990', 'suv-grande': '$25.990' },
+    'glow-up': { hatchback: '$27.990', sedan: '$30.990', suv: '$32.990', 'suv-grande': '$36.990' },
+    'star-plus': { hatchback: '$30.990 - $40.990', sedan: '$45.990 - $55.990', suv: '$55.990 - $65.990', 'suv-grande': '$85.990 - $100.000' },
+    'glow-star': { hatchback: '$60.990 - $80.990', sedan: '$80.990 - $100.990', suv: '$100.990 - $130.990', 'suv-grande': '$140.000 - $170.000' },
+    'ceramico': { hatchback: '$100.000 - $145.000', sedan: '$120.000 - $170.000', suv: '$140.000 - $200.000', 'suv-grande': '$180.000 - $250.000' }
+  };
+
+  const SERVICES = {
+    'wash-go': 'Wash & Go',
+    'glow-up': 'Glow Up',
+    'star-plus': 'Star Plus',
+    'glow-star': 'Glow Star',
+    'ceramico': 'Protección Cerámica'
+  };
+
+  const VEHICLES = {
+    hatchback: 'Hatchback',
+    sedan: 'Sedán',
+    suv: 'SUV',
+    'suv-grande': 'SUV Grande'
+  };
+
+  let currentService = '';
+  let selectedVehicle = '';
+
+  window.openQuoteModal = function(serviceType) {
+    currentService = serviceType;
+    const modal = document.getElementById('quoteModal');
+    const serviceName = document.getElementById('serviceName');
+    
+    if (modal && serviceName) {
+      serviceName.textContent = SERVICES[serviceType] || serviceType;
+      updatePrices(serviceType);
+      resetForm();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.closeQuoteModal = function() {
+    const modal = document.getElementById('quoteModal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+      resetForm();
+    }
+  };
+
+  function updatePrices(serviceType) {
+    const priceElements = document.querySelectorAll('.vehicle-price');
+    const radios = document.querySelectorAll('.vehicle-radio');
+    
+    radios.forEach(function(radio, index) {
+      const vehicleType = radio.value;
+      const price = PRICES[serviceType] && PRICES[serviceType][vehicleType] ? PRICES[serviceType][vehicleType] : '$0';
+      if (priceElements[index]) {
+        priceElements[index].textContent = price;
+      }
+    });
+  }
+
+  document.addEventListener('change', function(e) {
+    if (e.target && e.target.classList.contains('vehicle-radio')) {
+      selectedVehicle = e.target.value;
+      
+      document.querySelectorAll('.vehicle-option').forEach(function(opt) {
+        opt.classList.remove('selected');
+      });
+      
+      const label = e.target.closest('label');
+      const selectedOption = label ? label.querySelector('.vehicle-option') : null;
+      if (selectedOption) {
+        selectedOption.classList.add('selected');
+      }
+      
+      const estimatedPrice = document.getElementById('estimatedPrice');
+      const price = PRICES[currentService] && PRICES[currentService][selectedVehicle] ? PRICES[currentService][selectedVehicle] : null;
+      if (estimatedPrice && price) {
+        estimatedPrice.textContent = price;
+      }
+    }
+  });
+
+  document.addEventListener('submit', function(e) {
+    if (e.target && e.target.id === 'quoteForm') {
+      e.preventDefault();
+      
+      if (!selectedVehicle) {
+        alert('Por favor selecciona un tipo de vehículo');
+        return;
+      }
+      
+      const formData = new FormData(e.target);
+      const name = formData.get('name');
+      const phone = formData.get('phone');
+      const email = formData.get('email');
+      const comments = formData.get('comments');
+      
+      let msg = '\uD83D\uDE97 *COTIZACIÓN CLEANSTAR DETAILING*\n\n';
+      msg += '\uD83D\uDC64 *Cliente:* ' + name + '\n';
+      msg += '\uD83D\uDCF1 *Contacto:* ' + phone + '\n';
+      if (email) msg += '\uD83D\uDCE7 *Email:* ' + email + '\n';
+      msg += '\n\uD83D\uDD27 *Servicio:* ' + SERVICES[currentService] + '\n';
+      msg += '\uD83D\uDE99 *Vehículo:* ' + VEHICLES[selectedVehicle] + '\n';
+      msg += '\uD83D\uDCB0 *Precio:* ' + PRICES[currentService][selectedVehicle] + '\n';
+      if (comments) msg += '\n\uD83D\uDCAC *Comentarios:* ' + comments + '\n';
+      msg += '\n\u2705 *Cotización desde cleanstar-detailing.com*';
+      
+      const url = 'https://wa.me/56947346095?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank');
+      
+      window.closeQuoteModal();
+    }
+  });
+
+  function resetForm() {
+    const form = document.getElementById('quoteForm');
+    const estimatedPrice = document.getElementById('estimatedPrice');
+    
+    if (form) form.reset();
+    if (estimatedPrice) estimatedPrice.textContent = 'Selecciona tu vehículo';
+    
+    document.querySelectorAll('.vehicle-option').forEach(function(opt) {
+      opt.classList.remove('selected');
+    });
+    
+    selectedVehicle = '';
+  }
+
+  document.addEventListener('click', function(e) {
+    const modal = document.getElementById('quoteModal');
+    if (e.target === modal) {
+      window.closeQuoteModal();
+    }
+  });
+</script>
