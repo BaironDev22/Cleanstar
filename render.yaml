@@ -1,8 +1,6 @@
 services:
   - type: web
     name: cleanstar-detailing
-    env: node
-    plan: free
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
     headers:

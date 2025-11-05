@@ -123,18 +123,6 @@ import img6 from '../assets/images/gallery/IMG_2672.webp';
               </div>
             </div>
 
-            <!-- Navigation Buttons -->
-            <button class="carousel-btn carousel-btn-prev" aria-label="Anterior">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-              </svg>
-            </button>
-            <button class="carousel-btn carousel-btn-next" aria-label="Siguiente">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </button>
-
             <!-- Decorative elements -->
             <div class="absolute -top-4 -right-4 w-24 h-24 rounded-full opacity-20 decorative-element animate-float" style="background-color: var(--color3); z-index: -1;"></div>
             <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full opacity-20 decorative-element animate-float-delay" style="background-color: var(--color2); z-index: -1;"></div>
@@ -215,7 +203,7 @@ import img6 from '../assets/images/gallery/IMG_2672.webp';
   .carousel-track {
     display: flex;
     gap: 1rem;
-    animation: scroll-carousel 30s linear infinite;
+    animation: scroll-carousel 20s linear infinite;
   }
 
   @keyframes scroll-carousel {
@@ -225,10 +213,6 @@ import img6 from '../assets/images/gallery/IMG_2672.webp';
     100% {
       transform: translateX(-100%);
     }
-  }
-
-  .carousel-wrapper:hover .carousel-track {
-    animation-play-state: paused;
   }
 
   .carousel-slide {
@@ -241,44 +225,6 @@ import img6 from '../assets/images/gallery/IMG_2672.webp';
     height: 400px;
     object-fit: cover;
     border-radius: 1rem;
-  }
-
-  /* Navigation Buttons */
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.8);
-    border: none;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-    color: #1f2937;
-    opacity: 0;
-  }
-
-  .carousel-wrapper:hover .carousel-btn {
-    opacity: 1;
-  }
-
-  .carousel-btn:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-
-  .carousel-btn-prev {
-    left: 1rem;
-  }
-
-  .carousel-btn-next {
-    right: 1rem;
   }
 
   /* Desktop: Show 3 images */
@@ -297,23 +243,15 @@ import img6 from '../assets/images/gallery/IMG_2672.webp';
     }
   }
 
-  /* Mobile: Show 1 image */
+  /* Mobile: Show 2 images */
   @media (max-width: 639px) {
+    .carousel-slide {
+      flex: 0 0 calc(50% - 0.5rem);
+      min-width: calc(50% - 0.5rem);
+    }
+
     .carousel-image {
       height: 300px;
-    }
-
-    .carousel-btn {
-      width: 40px;
-      height: 40px;
-    }
-
-    .carousel-btn-prev {
-      left: 0.5rem;
-    }
-
-    .carousel-btn-next {
-      right: 0.5rem;
     }
   }
 </style>
@@ -322,44 +260,11 @@ import img6 from '../assets/images/gallery/IMG_2672.webp';
   document.addEventListener('DOMContentLoaded', function() {
     const track = document.querySelector('.carousel-track');
     const slides = document.querySelectorAll('.carousel-slide');
-    const prevBtn = document.querySelector('.carousel-btn-prev');
-    const nextBtn = document.querySelector('.carousel-btn-next');
     
-    if (!track || !slides.length || !prevBtn || !nextBtn) return;
+    if (!track || !slides.length) return;
 
     // Duplicar las imágenes para crear un loop infinito
     const clonedSlides = Array.from(slides).map(slide => slide.cloneNode(true));
     clonedSlides.forEach(clone => track.appendChild(clone));
-
-    let currentTranslate = 0;
-    let isPaused = false;
-
-    // Event listeners para los botones
-    prevBtn.addEventListener('click', function() {
-      currentTranslate += 10;
-      track.style.animation = 'none';
-      track.style.transform = `translateX(${currentTranslate}%)`;
-      setTimeout(() => {
-        track.style.animation = '';
-      }, 50);
-    });
-
-    nextBtn.addEventListener('click', function() {
-      currentTranslate -= 10;
-      track.style.animation = 'none';
-      track.style.transform = `translateX(${currentTranslate}%)`;
-      setTimeout(() => {
-        track.style.animation = '';
-      }, 50);
-    });
-
-    // Pausar animación al hacer hover
-    track.addEventListener('mouseenter', function() {
-      isPaused = true;
-    });
-
-    track.addEventListener('mouseleave', function() {
-      isPaused = false;
-    });
   });
 </script>
